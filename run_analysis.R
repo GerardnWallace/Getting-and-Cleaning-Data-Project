@@ -100,7 +100,7 @@ subj_sum <- means_stds %>% group_by(subject, activity) %>%
   summarize_all(mean)
 
 #Remove numerals from column names
-names(subj_sum) <- gsub("^[1-9]+", "", names(subj_sum))
+names(subj_sum) <- gsub("^[0-9]+", "", names(subj_sum))
 
 #Specify that columns are means
 names(subj_sum)[3:68] <- paste("mean of", names(subj_sum)[3:68])

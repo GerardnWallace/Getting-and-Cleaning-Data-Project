@@ -11,7 +11,7 @@ training training dataset contains 7352 observations of 6 activities recorded in
 9 subjects. of the following variables used forfeature detection of activities 
 (adapted from [2]).
 
-##Variables
+##Variable Descriptions
 - subject
 - activity
 - columns 3:563 are features
@@ -69,18 +69,163 @@ These are used on the angle() variable:
 - tBodyGyroMean
 - tBodyGyroJerkMean
 
-##Files in the UCI HAR.zip Dataset
-- activity_labesl.txt: Numeric codes and character sting labels for activites
-- features.txt: The complete vector of all 561 features
-- features_info.txt: A description of recorded features
-- README.txt: Dataset readme
-- test/: folder containing test subject data
-- train/:folder containing training subject data
+#Data Summary
+The run_analysis.R script was run to assemble and summerize the data.
 
-Train and test each contain
-- subject_[train|test].txt: Vector of subject IDs
-- X_[train|test].txt: Matrix of Features
-- y_[train|test].text: Vector of numeric activity codes
-- Intertial Signals/: Folder containing the 9 files. Files represent raw
-  accelerometer, gyroscope, and sum of accelerometer and gyroscope accelerations
-  in the x, y, and z spatial axes
+- Load required packages
+- Define Assemble() function 
+- Download data
+- Unzip files
+- Assemble and label data selecting only mean() and std() measures
+- Calculate group means for the interaction of subject and activity
+- Remove numerals from column names of summarized data
+- Specify that columns of summarized data are means
+- Save summarized data as .txt file
+
+#List of 68 varialbes produced by Assemble()
+
+"subject"
+- Factor: levels 1-30
+"activity"
+- Factor: levels WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, 
+  STANDING, LAYING
+"1 tBodyAcc-mean()-X"
+"2 tBodyAcc-mean()-Y"
+"3 tBodyAcc-mean()-Z"
+"4 tBodyAcc-std()-X"
+"5 tBodyAcc-std()-Y"
+"6 tBodyAcc-std()-Z"
+"41 tGravityAcc-mean()-X"
+"42 tGravityAcc-mean()-Y"
+"43 tGravityAcc-mean()-Z"
+"44 tGravityAcc-std()-X"
+"45 tGravityAcc-std()-Y"
+"46 tGravityAcc-std()-Z"
+"81 tBodyAccJerk-mean()-X"
+"82 tBodyAccJerk-mean()-Y"
+"83 tBodyAccJerk-mean()-Z"
+"84 tBodyAccJerk-std()-X"
+"85 tBodyAccJerk-std()-Y"
+"86 tBodyAccJerk-std()-Z"
+"121 tBodyGyro-mean()-X"
+"122 tBodyGyro-mean()-Y"
+"123 tBodyGyro-mean()-Z"
+"124 tBodyGyro-std()-X"
+"125 tBodyGyro-std()-Y"
+"126 tBodyGyro-std()-Z"
+"161 tBodyGyroJerk-mean()-X"
+"162 tBodyGyroJerk-mean()-Y"
+"163 tBodyGyroJerk-mean()-Z"
+"164 tBodyGyroJerk-std()-X"
+"165 tBodyGyroJerk-std()-Y"
+"166 tBodyGyroJerk-std()-Z"
+"201 tBodyAccMag-mean()"
+"202 tBodyAccMag-std()"
+"214 tGravityAccMag-mean()"
+"215 tGravityAccMag-std()"
+"227 tBodyAccJerkMag-mean()"
+"228 tBodyAccJerkMag-std()"
+"240 tBodyGyroMag-mean()"
+"241 tBodyGyroMag-std()"
+"253 tBodyGyroJerkMag-mean()"
+"254 tBodyGyroJerkMag-std()"
+"266 fBodyAcc-mean()-X"
+"267 fBodyAcc-mean()-Y"
+"268 fBodyAcc-mean()-Z"
+"269 fBodyAcc-std()-X"
+"270 fBodyAcc-std()-Y"
+"271 fBodyAcc-std()-Z"
+"345 fBodyAccJerk-mean()-X"
+"346 fBodyAccJerk-mean()-Y"
+"347 fBodyAccJerk-mean()-Z"
+"348 fBodyAccJerk-std()-X"
+"349 fBodyAccJerk-std()-Y"
+"350 fBodyAccJerk-std()-Z"
+"424 fBodyGyro-mean()-X"
+"425 fBodyGyro-mean()-Y"
+"426 fBodyGyro-mean()-Z"
+"427 fBodyGyro-std()-X"
+"428 fBodyGyro-std()-Y"
+"429 fBodyGyro-std()-Z"
+"503 fBodyAccMag-mean()"
+"504 fBodyAccMag-std()"
+"516 fBodyBodyAccJerkMag-mean()"
+"517 fBodyBodyAccJerkMag-std()"
+"529 fBodyBodyGyroMag-mean()"
+"530 fBodyBodyGyroMag-std()"
+"542 fBodyBodyGyroJerkMag-mean()"
+"543 fBodyBodyGyroJerkMag-std()"
+
+#Complete list of summary variables
+"subject"
+- Factor: levels 1-30
+"activity"
+- Factor: levels WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, 
+  STANDING, LAYING
+"mean of  tBodyAcc-mean()-X"
+"mean of  tBodyAcc-mean()-Y"
+"mean of  tBodyAcc-mean()-Z"
+"mean of  tBodyAcc-std()-X"
+"mean of  tBodyAcc-std()-Y"
+"mean of  tBodyAcc-std()-Z"
+"mean of  tGravityAcc-mean()-X"
+"mean of  tGravityAcc-mean()-Y"
+"mean of  tGravityAcc-mean()-Z"
+"mean of  tGravityAcc-std()-X"
+"mean of  tGravityAcc-std()-Y"
+"mean of  tGravityAcc-std()-Z"
+"mean of  tBodyAccJerk-mean()-X"
+"mean of  tBodyAccJerk-mean()-Y"
+"mean of  tBodyAccJerk-mean()-Z"
+"mean of  tBodyAccJerk-std()-X"
+"mean of  tBodyAccJerk-std()-Y"
+"mean of  tBodyAccJerk-std()-Z"
+"mean of  tBodyGyro-mean()-X"
+"mean of  tBodyGyro-mean()-Y"
+"mean of  tBodyGyro-mean()-Z"
+"mean of  tBodyGyro-std()-X"
+"mean of  tBodyGyro-std()-Y"
+"mean of  tBodyGyro-std()-Z"
+"mean of  tBodyGyroJerk-mean()-X"
+"mean of  tBodyGyroJerk-mean()-Y"
+"mean of  tBodyGyroJerk-mean()-Z"
+"mean of  tBodyGyroJerk-std()-X"
+"mean of  tBodyGyroJerk-std()-Y"
+"mean of  tBodyGyroJerk-std()-Z"
+"mean of  tBodyAccMag-mean()"
+"mean of  tBodyAccMag-std()"
+"mean of  tGravityAccMag-mean()"
+"mean of  tGravityAccMag-std()"
+"mean of  tBodyAccJerkMag-mean()"
+"mean of  tBodyAccJerkMag-std()"
+"mean of  tBodyGyroMag-mean()"
+"mean of  tBodyGyroMag-std()"
+"mean of  tBodyGyroJerkMag-mean()"
+"mean of  tBodyGyroJerkMag-std()"
+"mean of  fBodyAcc-mean()-X"
+"mean of  fBodyAcc-mean()-Y"
+"mean of  fBodyAcc-mean()-Z"
+"mean of  fBodyAcc-std()-X"
+"mean of  fBodyAcc-std()-Y"
+"mean of  fBodyAcc-std()-Z"
+"mean of  fBodyAccJerk-mean()-X"
+"mean of  fBodyAccJerk-mean()-Y"
+"mean of  fBodyAccJerk-mean()-Z"
+"mean of  fBodyAccJerk-std()-X"
+"mean of  fBodyAccJerk-std()-Y"
+"mean of  fBodyAccJerk-std()-Z"
+"mean of  fBodyGyro-mean()-X"
+"mean of  fBodyGyro-mean()-Y"
+"mean of  fBodyGyro-mean()-Z"
+"mean of  fBodyGyro-std()-X"
+"mean of  fBodyGyro-std()-Y"
+"mean of  fBodyGyro-std()-Z"
+"mean of  fBodyAccMag-mean()"
+"mean of  fBodyAccMag-std()"
+"mean of  fBodyBodyAccJerkMag-mean()"
+"mean of  fBodyBodyAccJerkMag-std()"
+"mean of  fBodyBodyGyroMag-mean()"
+"mean of  fBodyBodyGyroMag-std()"
+"mean of  fBodyBodyGyroJerkMag-mean()"
+"mean of  fBodyBodyGyroJerkMag-std()"
+
