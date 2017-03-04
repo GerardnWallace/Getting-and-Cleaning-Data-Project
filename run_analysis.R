@@ -74,23 +74,31 @@ Assemble <- function(path = NULL) {
   #Sort Columns so activity is near start
   full_data <- full_data[, c("subject", 
                              "activity",
-                             setdiff(names(full_data), c("subject", "activity")))]
+                             setdiff(names(full_data), 
+                                     c("subject", "activity")))]
+
+
   
   #Select mean() and std() measures
-  select(full_data,
-         subject,
-         activity,
-         grep("mean\\(\\)|std\\(\\)", names(full_data)))
+  mean_std <- select(full_data,
+                     subject,
+                     activity,
+                     grep("mean\\(\\)|std\\(\\)", names(full_data)))
   
+  #Remove numerals form column names
+  names(mean_std) <- gsub("^[0-9]+ ", "", names(mean_std))
+  mean_std
 }
 
 #Download data
-dataURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-download.file(dataURL, "Galaxy_S_RAW.zip")
-DLdate <- Sys.Date()
+if(!file.exists("UCI HAR Dataset")){
+  dataURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+  download.file(dataURL, "Galaxy_S_RAW.zip")
+  DLdate <- Sys.Date()
 
-#Unzip files
-unzip("Galaxy_S_RAW.zip")
+  #Unzip files
+  unzip("Galaxy_S_RAW.zip")
+}
 
 #Assemble/format data
 means_stds <- Assemble()
@@ -100,7 +108,7 @@ subj_sum <- means_stds %>% group_by(subject, activity) %>%
   summarize_all(mean)
 
 #Remove numerals from column names
-names(subj_sum) <- gsub("^[0-9]+", "", names(subj_sum))
+names(subj_sum) <- gsub("^[0-9]+ ", "", names(subj_sum))
 
 #Specify that columns are means
 names(subj_sum)[3:68] <- paste("mean of", names(subj_sum)[3:68])
