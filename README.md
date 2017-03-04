@@ -19,22 +19,22 @@ Samsung Galaxy S accelerometer dataset. The resulting data is tidy with one row
 per subject and one column per variable. 
 
 ##run_analysis.R performs the following operations
--Load required packages
--Define Assemble() function  
- +Assemble loads the individual components of the 
-  dataset, merges the test and training data, labels the data columns, labels 
-  the activities and selects the mean() and std() features
- +Args
-  *path: The directory containing the downloaded data
- +Returns
-  *The subject, activity and mean() and std() of measure variables in the data
--Download data
--Unzip files
--Assemble and label data
--Calculate group means for the interaction of subject and activity
--Remove numerals from column names of summarized data
--Specify that columns of summarized data are means
--Save summarized data as .txt file
+- Load required packages
+- Define Assemble() function 
+ + Assemble loads the individual components of the 
+   dataset, merges the test and training data, labels the data columns, labels 
+   the activities and selects the mean() and std() features
+ + Args
+  * path: The directory containing the downloaded data
+ + Returns
+  * The subject, activity and mean() and std() of measure variables in the data
+- Download data
+- Unzip files
+- Assemble and label data
+- Calculate group means for the interaction of subject and activity
+- Remove numerals from column names of summarized data
+- Specify that columns of summarized data are means
+- Save summarized data as .txt file
 
 #References
 [1] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. 
